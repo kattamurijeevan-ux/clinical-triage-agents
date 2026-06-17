@@ -29,6 +29,7 @@ docstring_parser==0.18.0
 durationpy==0.10
 et_xmlfile==2.0.0
 fastapi==0.137.1
+fastuuid==0.14.0
 filelock==3.29.4
 flatbuffers==25.12.19
 frozenlist==1.8.0
@@ -59,6 +60,7 @@ lance-namespace==0.8.6
 lance-namespace-urllib3-client==0.8.6
 lancedb==0.30.0
 linkify-it-py==2.1.0
+litellm==1.89.1
 lxml==6.1.1
 markdown-it-py==4.2.0
 MarkupSafe==3.0.3
