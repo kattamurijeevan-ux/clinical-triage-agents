@@ -10,15 +10,18 @@ import time
 import json
 
 def extract_esi_and_escalation(result_text: str):
-    esi_match = re.search(r'ESI level (?:of )?(\d)', result_text)
+    # Search the full text, not just the start — handles "ESI level: 4", "ESI level 5", "esi level of 3"
+    esi_match = re.search(r'ESI\s*level[:\s]*(?:of\s*)?(\d)', result_text, re.IGNORECASE)
     esi_level = int(esi_match.group(1)) if esi_match else None
 
-    text_lower = result_text.lower()[:30]
-    if "needs_more_info" in text_lower or "needs more info" in text_lower:
+    text_lower = result_text.lower()
+    first_30 = text_lower[:30]
+
+    if "needs_more_info" in text_lower or "needs more info" in first_30:
         escalation = "needs_more_info"
-    elif "urgent" in text_lower:
+    elif "urgent" in first_30:
         escalation = "urgent"
-    elif "routine" in text_lower:
+    elif "routine" in first_30:
         escalation = "routine"
     else:
         escalation = "unknown"
